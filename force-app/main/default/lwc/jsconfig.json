@@ -5,6 +5,12 @@
         "paths": {
             "c/testHome": [
                 "testHome/testHome.js"
+            ],
+            "c/CSVReader": [
+                "CSVReader/CSVReader.js"
+            ],
+            "c/cSVReader": [
+                "cSVReader/cSVReader.js"
             ]
         }
     },

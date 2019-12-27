@@ -1,0 +1,24 @@
+<template>
+    <lightning-card icon-name="custom:custom19" title='Read CSV File LWC'>
+        <div style="margin-left: 3%">
+            <lightning-file-upload accept={acceptedFormats} 
+                                   label="Attach receipt" 
+                                   multiple="multiple" 
+                                   onuploadfinished={handleUploadFinished} 
+                                   record-id={recordId}></lightning-file-upload>
+        </div>
+
+
+        <div if:true={error}>
+            {error}
+        </div><br/>
+
+        <div if:true={data}>
+            <lightning-datatable columns={columns} 
+                                 data={data} 
+                                 hide-checkbox-column="true" 
+                                 key-field="id"></lightning-datatable>
+        </div>
+
+    </lightning-card>
+</template>
