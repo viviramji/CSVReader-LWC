@@ -1,27 +1,18 @@
 <template>
-    <lightning-card icon-name="custom:custom19" title='Read CSV File LWC'>
+    <lightning-card icon-name="custom:custom13" title='CSV Reader File LWC'>
         <div style="margin-left: 3%">
-            <lightning-file-upload accept={acceptedFormats} 
-                                   label="Attach receipt" 
-                                   multiple="multiple" 
-                                   onuploadfinished={handleUploadFinished} 
-                                   record-id={recordId}></lightning-file-upload>
+            <lightning-file-upload accept={acceptedFormats} label="Attach receipt" multiple="multiple"
+                onuploadfinished={handleUploadFinished} record-id='0016g000006GEZCAA4'></lightning-file-upload>
         </div>
 
 
         <div if:true={error}>
             {error}
-        </div><br/>
+        </div><br />
 
         <div if:true={data}>
-            <lightning-datatable columns={columns} 
-                                 data={data} 
-                                 hide-checkbox-column="true" 
-                                 key-field="id"></lightning-datatable>
-        </div>
-
-        <div>
-            <button class="slds-button slds-button_brand" onclick={handleButtonTest}>Test</button>
+            <lightning-datatable columns={columns} data={data} hide-checkbox-column="true" key-field="id">
+            </lightning-datatable>
         </div>
     </lightning-card>
 </template>

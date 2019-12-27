@@ -4,11 +4,10 @@ import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 import readCSV from '@salesforce/apex/CSVReaderController.readCSVFile';
 
 const columns = [
-    { label: 'Name', fieldName: 'Name' }, 
-    { label: 'Industry', fieldName: 'Industry' },
-    { label: 'Rating', fieldName: 'Rating'}, 
-    { label: 'Type', fieldName: 'Type'}, 
-    { label: 'Website', fieldName: 'Website', type:'url'}
+    { label: 'Identity Document', fieldName: 'Identity_Document__c' }, 
+    { label: 'First Name', fieldName: 'First_Name__c' },
+    { label: 'Last Name', fieldName: 'Last_Name__c'},
+    { label: 'Status', fieldName: 'Status__c'}
 ];
 
 export default class CSVReader extends LightningElement {
@@ -50,10 +49,5 @@ export default class CSVReader extends LightningElement {
             );     
         })
 
-    }
-
-    handleButtonTest(){
-        var test = 'el amor';
-        window.console.log(test);
     }
 }
