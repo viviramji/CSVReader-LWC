@@ -2,6 +2,7 @@ import { LightningElement, track, api } from 'lwc';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 
 import readCSV from '@salesforce/apex/CSVReaderController.readCSVFile';
+import import_data from '@salesforce/apex/CSVReaderController.import_data';
 
 const columns = [
     { label: 'id', fieldName: 'Aux_Id__c'},
@@ -25,13 +26,13 @@ export default class CSVReader extends LightningElement {
     handleUploadFinished(event) {
         // Get the list of uploaded files
         const uploadedFiles = event.detail.files;
-
+        window.console.log('files length ' + uploadedFiles.length);
         // calling apex class
         readCSV({idContentDocument : uploadedFiles[0].documentId})
-        .then(result => {
-            window.console.log('result ===> '+result);
+        .then(res => {
+            window.console.log('res ===> '+res);
             this.error = '';
-            this.data = result;
+            this.data = res;
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success!!',
@@ -55,6 +56,28 @@ export default class CSVReader extends LightningElement {
 
     importData(){
         // TODO: Import process
-        window.console.log(this.data.Last_Name__);
+        //call apex import class
+        import_data({ accounts_to_import: this.data })
+        .then(res => {
+            this.data = res;
+            window.console.log(JSON.parse(JSON.stringify(res)));
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success!!',
+                    message: 'Imported data!',
+                    variant: 'success',
+                }),
+            );
+        })
+        .catch(error =>{
+            window.console.error(JSON.stringify(error));
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error on Importing data',
+                    message: JSON.stringify(error),
+                    variant: 'Error'
+                }),
+            )
+        })
     }
 }
