@@ -51,4 +51,9 @@ export default class CSVReader extends LightningElement {
         })
 
     }
+
+    handleButtonTest(){
+        var test = 'el amor';
+        window.console.log(test);
+    }
 }
