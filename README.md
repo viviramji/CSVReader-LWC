@@ -4,6 +4,5 @@
 
 ![demo](https://i.ibb.co/fk1v557/Captura.png)
  
-## Using Aura Lightning web components (Aura)
 
 ![demo-aura](https://i.ibb.co/5jCHnjp/aura-Process.png)
