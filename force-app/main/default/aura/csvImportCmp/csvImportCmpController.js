@@ -20,6 +20,7 @@
         console.log(csv);
         var lines = csv.split('\n');
         var headers = lines[0].split(',');
+        cmp.set('v.headers', headers);
         for (let index in headers) {
           console.log(headers[index]);
           columns.push({
@@ -29,7 +30,12 @@
             editable: false
           });
         }
-        
+
+        columns.push({
+          label: 'Status', fieldName: 'actionState', type: 'button', initialWidth: 150, typeAttributes:
+            { label: { fieldName: 'createOrUpdate' }, title: 'Status', name: 'status', variant: { fieldName: 'variant' }, class: 'btn_next' }
+        });
+
         for (let index in lines) {
           console.log(lines[index]);
           //we need to check value instead of type and value ;) so anyways xD
@@ -46,12 +52,38 @@
           cmp.set('v.data', data);
           cmp.set('v.columns', columns);
         }
-      
-      }     
-    } 
+
+      }
+    }
   },
 
   importCSV: function (cmp, evt, helper) {
+    var obj = {};
+    var isToSave = true;
+    var data = cmp.get('v.data');
+    var headers = cmp.get('v.headers');
     cmp.set('v.saving', true);
+    //console.log('@@@ ' + JSON.stringify(data[1]));
+    for (let index in headers) {
+      if(headers[index].trim() == 'Id'){
+        if (data[0][headers[index].trim()].trim() != '0') {
+          obj[headers[index].trim()] = data[0][headers[index].trim()].trim();
+          isToSave = false;
+        } else {
+          obj.Id = undefined;
+          isToSave = true;
+        }
+      }else{
+        obj[headers[index].trim()] = data[0][headers[index].trim()].trim();
+      }
+      //console.log(`esta naciendo un nuevo obj ${JSON.stringify(obj)}`);
+    }
+
+    if(isToSave){
+      helper.save(cmp, obj, 0);
+    }else{
+      helper.update(cmp, obj, 0);
+    }
+
   }
 })
