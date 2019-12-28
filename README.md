@@ -2,7 +2,7 @@
 
 ## Using LWC Lightning Web Components
 
-![demo(https://i.ibb.co/fk1v557/Captura.png)
+![demo](https://i.ibb.co/fk1v557/Captura.png)
  
 ## Using Aura Lightning web components (Aura)
 
