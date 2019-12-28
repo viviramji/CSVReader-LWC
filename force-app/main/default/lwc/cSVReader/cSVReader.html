@@ -6,8 +6,13 @@
                     onuploadfinished={handleUploadFinished} record-id='0016g000006GEZCAA4'></lightning-file-upload>
             </div>
 
-
-            <div if:true={error}>
+            <div if:true={isLoaded} class="slds-align_absolute-center">
+                <div class="holder">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </div>
+            
+            <div if:true={error} class="error">
                 {error}
             </div><br />
 
