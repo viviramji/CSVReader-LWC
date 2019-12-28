@@ -3,14 +3,11 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/testHome": [
-                "testHome/testHome.js"
-            ],
-            "c/CSVReader": [
-                "CSVReader/CSVReader.js"
-            ],
             "c/cSVReader": [
                 "cSVReader/cSVReader.js"
+            ],
+            "c/testHome": [
+                "testHome/testHome.js"
             ]
         }
     },
