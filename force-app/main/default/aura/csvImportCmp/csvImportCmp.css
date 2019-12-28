@@ -1,0 +1,7 @@
+.THIS .loading-holder {
+    position: relative; display: inline-block;width: 80px; height: 80px;
+}
+
+.THIS .table-box{
+    max-height: 300px; min-width: 500px;
+}

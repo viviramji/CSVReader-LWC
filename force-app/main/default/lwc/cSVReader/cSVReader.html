@@ -20,8 +20,11 @@
                 <button class="slds-button slds-button_brand" onclick={importData} style="margin: 2%">
                     Import Data
                 </button>
-                <lightning-datatable columns={columns} data={data} hide-checkbox-column="true" key-field="id">
-                </lightning-datatable>
+
+                <div style="max-height: 300px; min-width: 400px" class="slds-col slds-size_12-of-12 slds-scrollable_y">
+                    <lightning-datatable columns={columns} data={data} hide-checkbox-column="true" key-field="id">
+                    </lightning-datatable>
+                </div>
             </div>
         </div>
     </lightning-card>

@@ -1,0 +1,51 @@
+<aura:component controller="csvImportController"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">
+    <!--Required attributes -->
+    <aura:attribute name="accept" type="String" default=".csv" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="headers" type="List" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="saving" type="Boolean" default="false" />
+
+    <fieldset class="slds-box slds-theme--default">
+        <!--input -->
+        <lightning:input name="Import Files" type="file" label="Import Files" multiple="{!v.multiple}"
+            accept="{!v.accept}" aura:id="file-input" onchange="{! c.handleUploadFinished}" />
+
+        <aura:if isTrue="{! v.isLoading }">
+            <div class="slds-align_absolute-center">
+                <lightning:spinner class="loading-holder" size="medium" />
+            </div>
+
+            <aura:set attribute="else">
+                <aura:if isTrue="{! v.data.length > 0}">
+                    <h1 class="slds-m-vertical_small">Total Data: {! v.data.length } Accounts</h1> <br />
+                    <div style="max-height: 300px; min-width: 400px; margin: 2%"
+                        class="slds-col slds-size_12-of-12 slds-scrollable_y">
+                        <lightning:datatable keyField="id" data="{! v.data }" columns="{! v.columns }"
+                            hideCheckboxColumn="true" />
+                    </div>
+
+
+                    <!-- import button -->
+                    <div class="slds-form-element__row slds-align_absolute-center" style="margin-top: 15px">
+                        <lightning:button class="slds-align_absolute-center" variant="brand" type="Submit"
+                            onclick="{!c.importCSV}" label="Import CSV" disabled="{! v.saving }"/>
+                    </div>
+
+                    <aura:set attribute="else">
+                        <div class="slds-text-color_error slds-text-heading_large" style="margin: 3%;">Please upload a
+                            file to show here.</div>
+                    </aura:set>
+
+                </aura:if>
+
+            </aura:set>
+        </aura:if>
+    </fieldset>
+
+
+</aura:component>
